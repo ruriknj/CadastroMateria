@@ -1,5 +1,6 @@
 package entidade;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +13,8 @@ public class Atividade {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	@Column(name = "id_atividade")
+	private Integer id;
 	private String titulo;
 	private String observacao;
 
@@ -23,18 +25,18 @@ public class Atividade {
 	public Atividade() {
 	}
 
-	public Atividade(long id, String titulo, String observacao, Materia materia) {
+	public Atividade(Integer id, String titulo, String observacao) {
 		this.id = id;
 		this.titulo = titulo;
 		this.observacao = observacao;
-		this.materia = materia;
+		//this.materia = materia;
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

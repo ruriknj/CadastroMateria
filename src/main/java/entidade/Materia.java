@@ -3,7 +3,9 @@ package entidade;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +18,8 @@ public class Materia {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	@Column(name = "id_materia")
+	private Integer id;
 	private String nome;
 	private String email;
 	private String senha;
@@ -25,29 +28,27 @@ public class Materia {
 	@OneToMany(mappedBy = "materia", cascade = CascadeType.ALL)
 	private List<Atividade> atividades = new ArrayList<>();
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "id_estudante")
 	private Estudante estudante;
 
 	public Materia() {
 	}
 
-	public Materia(long id, String nome, String email, String senha, String descricao, List<Atividade> atividades,
-			Estudante estudante) {
+	public Materia(Integer id, String nome, String email, String senha, String descricao) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
 		this.descricao = descricao;
-		this.atividades = atividades;
-		this.estudante = estudante;
+		//this.estudante = estudante;
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -99,4 +100,11 @@ public class Materia {
 		this.estudante = estudante;
 	}
 
+	@Override
+	public String toString() {
+		return "Materia [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", descricao="
+				+ descricao + ", estudante: " + estudante + "]";
+	}
+
+	
 }

@@ -2,6 +2,9 @@ package entidade;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,18 +16,19 @@ public class Estudante {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	@Column(name = "id_estudante")
+	private Integer id;
 	private String nome;
 	private String email;
 	private String senha;
 
-	@OneToMany(mappedBy = "estudante")
-	List<Materia> materias = new ArrayList<>();
+	@OneToMany(mappedBy = "estudante", cascade = CascadeType.ALL)
+	private List<Materia> materias = new ArrayList<>();
 
 	public Estudante() {
 	}
 
-	public Estudante(long id, String nome, String email, String senha) {
+	public Estudante(Integer id, String nome, String email, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -32,11 +36,11 @@ public class Estudante {
 		this.senha = senha;
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -71,5 +75,12 @@ public class Estudante {
 	public void setMaterias(List<Materia> materias) {
 		this.materias = materias;
 	}
+
+	@Override
+	public String toString() {
+		return "Estudante: id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + "]";
+	}
+	
+	
 
 }
