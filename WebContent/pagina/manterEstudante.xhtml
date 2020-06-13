@@ -1,0 +1,91 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<h:body>
+	<p:fieldset>
+		<h:form id="form">
+			
+			<ui:composition template="templateEstudante.xhtml">
+			<p:growl id="growl" showDetail="true" sticky="true" /> 
+					<p:panel header="Estudante" style="width:605px;"/>
+				
+				<p:panelGrid columns="1">
+				<p:column>
+					<h:outputLabel value="Nome:" />
+					<p:inputText label="Nome"
+						value="#{MateriaBean.estudante.nome}" 
+						style="width:333px;" size="50" />
+					</p:column>
+				</p:panelGrid>
+				<p:panelGrid columns="1">
+					<h:outputLabel value="E-Mail:" />
+					<p:inputText label="Email"
+						value="#{MateriaBean.estudante.email}"
+						style="width:122px;" size ="50" />
+					<h:outputLabel value="Senha:" />
+					<p:inputText label="Senha"
+						value="#{MateriaBean.estudante.senha}"
+						style="width:122px;" size ="50" />
+				</p:panelGrid >
+				<p:column />
+				
+	
+				<p:panel header="Materia" style="width:605px;" update="@form"  />
+				<p:column colspan="4" />
+				<p:panelGrid columns="6">
+					<h:outputLabel value="Nome:" />
+					<p:inputText size="30" style="width:240px;"
+						value="#{MateriaBean.materia.nome}" />
+					<h:outputLabel value="Descrição: " />
+					<p:inputText style="width:180px;"
+						value="#{MateriaBean.materia.descricao}" />
+					</p:panelGrid>
+					<p:column>
+					</p:column>
+						<br />
+					<p:panelGrid >
+					<p:commandButton value="Adicionar" update="itens" 
+						actionListener="#{MateriaBean.adicionarMateria}" />
+					<p:commandButton value="Limpar" action="#{MateriaBean.limpar}"
+					id="limpar" update="@form" process="@this"/>
+					<p:commandButton value="Salvar" 
+						actionListener="#{MateriaBean.adicionar}" update="@form" />
+					</p:panelGrid>
+					<br />
+				<p:dataTable id="itens" value="#{MateriaBean.estudante.materias}"
+					style="width:605px;" var="item">
+					<p:column headerText="Ação">
+						<h:commandLink value="Remover" update="@form" immediate="true" 
+						action="#{MateriaBean.removerAtividade}" rendered="true" >
+						<f:setPropertyActionListener
+						target="#{MateriaBean.idAtividadeSelecionado}" value="#{item.id}" />
+                		</h:commandLink>
+					</p:column>
+					<p:column headerText="ID">
+						<h:outputText value="#{item.id}" />
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{item.nome}" />
+					</p:column>
+					<p:column headerText="Descrição">
+						<h:outputText value="#{item.descricao}" />
+					</p:column>
+					</p:dataTable>
+				
+				
+				
+				
+
+
+			</ui:composition>
+		</h:form>
+	</p:fieldset>
+</h:body>
+
+
+
+</html>

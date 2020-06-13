@@ -1,0 +1,53 @@
+<!DOCTYPE	html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:metadata charset="utf-8" />
+	<title>Materia</title>
+</h:head>
+
+<link rel="stylesheet" type="text/css"
+	href="#{request.contextPath}/resources/componentes/css/calendario.css" />
+<link rel="style" type="imagem"
+	href="WebContent/resources/componentes/imagem/image_1.jpg"/>
+<h:body>
+<h:form >
+	<div
+		style="width: 991px; font-size: 36px; line-height: 48px; 
+			background-color: navy; color: white">Cadastro de Materia</div>
+			
+	
+		<p:menubar label="Ajax" style="width:980px;" >
+			<p:menuitem value="Voltar" url="Home.xhtml"></p:menuitem>
+			<p:menuitem value="Login" url="login.xhtml"></p:menuitem>
+			<p:menuitem value="Cadastrar Materia" url="manterMateria.xhtml"></p:menuitem>
+			<p:menuitem value="Cadastrar Estudante" url="manterEstudante.xhtml"></p:menuitem>
+			<p:menuitem value="Listar Materias" url="listaMateria.xhtml"></p:menuitem>
+			<p:menuitem value="Fechar" onclick="closeDialog();" 
+					immediate="true" icon="ui-icon-close" >
+			</p:menuitem>
+		</p:menubar>
+		<SCRIPT type="text/javascript">
+   					 function closeDialog(){window.close();}
+    				</SCRIPT>
+	
+
+
+
+
+
+	<ui:insert></ui:insert>
+
+
+
+
+
+</h:form>
+</h:body>
+</html>
+
+

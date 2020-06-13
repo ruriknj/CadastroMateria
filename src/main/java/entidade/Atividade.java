@@ -29,7 +29,7 @@ public class Atividade {
 		this.id = id;
 		this.titulo = titulo;
 		this.observacao = observacao;
-		//this.materia = materia;
+		// this.materia = materia;
 	}
 
 	public Integer getId() {
@@ -62,6 +62,11 @@ public class Atividade {
 
 	public void setMateria(Materia materia) {
 		this.materia = materia;
+	}
+
+	@Override
+	public String toString() {
+		return "Atividade: id: " + id + ", titulo: " + titulo + ", observacao: " + observacao;
 	}
 
 }

@@ -1,0 +1,87 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<h:body>
+	<p:fieldset>
+		<h:form id="form">
+			
+			<ui:composition template="templateMateria.xhtml">
+			<p:growl id="growl" showDetail="true" sticky="true" /> 
+					<p:panel header="Materia" style="width:605px;"/>
+				
+				<p:panelGrid columns="1">
+				<p:column>
+					<h:outputLabel value="Nome:" />
+					<p:inputText label="Nome"
+						value="#{MateriaBean.materia.nome}" 
+						style="width:333px;" size="50" />
+					</p:column>
+				</p:panelGrid>
+				<p:panelGrid columns="1">
+					<h:outputLabel value="Descrição:" />
+					<p:inputTextarea label="Descrição"
+						value="#{MateriaBean.materia.descricao}"
+						style="width:582px;height:50px; h" />
+				</p:panelGrid >
+				<p:column />
+				
+	
+				<p:panel header="Atividade" style="width:605px;" update="@form"  />
+				<p:column colspan="4" />
+				<p:panelGrid columns="6">
+					<h:outputLabel value="Título:" />
+					<p:inputText size="30" style="width:240px;"
+						value="#{MateriaBean.atividadeAdicionado.titulo}" />
+					<h:outputLabel value="Observação: " />
+					<p:inputText style="width:180px;"
+						value="#{MateriaBean.atividadeAdicionado.observacao}" />
+					</p:panelGrid>
+					<p:column>
+					</p:column>
+						<br />
+					<p:panelGrid >
+					<p:commandButton value="Adicionar" update="itens" 
+						actionListener="#{MateriaBean.adicionarAtividade}" />
+					<p:commandButton value="Limpar" action="#{MateriaBean.limpar}"
+					id="limpar" update="@form" process="@this"/>
+					<p:commandButton value="Salvar" 
+						actionListener="#{MateriaBean.adicionar}" update="@form" />
+					</p:panelGrid>
+					<br />
+				<p:dataTable id="itens" value="#{MateriaBean.materia.atividades}"
+					style="width:605px;" var="item">
+					<p:column headerText="Ação">
+						<h:commandLink value="Remover" update="@form" immediate="true" 
+						action="#{MateriaBean.removerAtividade}" rendered="true" >
+						<f:setPropertyActionListener
+						target="#{MateriaBean.idAtividadeSelecionado}" value="#{item.id}" />
+                		</h:commandLink>
+					</p:column>
+					<p:column headerText="ID">
+						<h:outputText value="#{item.id}" />
+					</p:column>
+					<p:column headerText="Título">
+						<h:outputText value="#{item.titulo}" />
+					</p:column>
+					<p:column headerText="Observação">
+						<h:outputText value="#{item.observacao}" />
+					</p:column>
+					</p:dataTable>
+				
+				
+				
+				
+
+
+			</ui:composition>
+		</h:form>
+	</p:fieldset>
+</h:body>
+
+
+
+</html>

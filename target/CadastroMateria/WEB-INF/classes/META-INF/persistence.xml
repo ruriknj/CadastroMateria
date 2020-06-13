@@ -7,14 +7,13 @@
 	<persistence-unit name="CadastroMateria">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		
- 		<class></class>
-		<class></class>
-		<class></class>
-		<class></class>
+ 		<class>entidade.Material</class>
+		<class>entidade.Estudante</class>
+		<class>entidade.Atiividade</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://localhost:3306/javai" />
+				value="jdbc:mysql://localhost:3306/javai?useSSL=false" />
 			<property name="javax.persistence.jdbc.user"
 				value="desenvolvedor" />
 			<property name="javax.persistence.jdbc.password"
